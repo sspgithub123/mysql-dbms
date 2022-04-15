@@ -73,3 +73,27 @@ mysql> desc AddressBook;
 | email       | varchar(100) | NO   |     | NULL    |       |
 +-------------+--------------+------+-----+---------+-------+
 8 rows in set (0.13 sec)
+--------------------------------------------------------------------------------------------------------
+//UC3 inserting new Contacts to AddressBook table
+
+mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('shubham','pawar','abcd','solapur','maharashtra',413252,8530705596,'shubham.paw@gmail.com');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('reddy','aishwarya','bkguda','vizag','andhrapradesh',5073438,9176347439,'maishwarya@gmail.com');
+Query OK, 1 row affected (0.24 sec)
+
+mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('chow','anurag','lonavala','pune','maharashtra',5043438,91763456439,'manurag@gmail.com');
+Query OK, 1 row affected (0.19 sec)
+
+mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('mall','anupama','abcd','bangalore','karnataka',50443438,91763646439,'manupama@gmail.com');
+Query OK, 1 row affected (0.19 sec)
+
+mysql> select * from Addressbook;
++-----------+------------+----------+-----------+---------------+----------+--------------+-----------------------+
+| firstname | lastname   | address  | city      | state         | zip      | phonenumber  | email                 |
++-----------+------------+----------+-----------+---------------+----------+--------------+-----------------------+
+| shubham   | pawar      | abcd     | solapur   | maharashtra   |   413252 | 8530705596   | shubham.paw@gmail.com |
+| reddy     | aishwarya  | bkguda   | vizag     | andhrapradesh |  5073438 | 9176347439   | maishwarya@gmail.com  |
+| chow      | anurag     | lonavala | pune      | maharashtra   |  5043438 | 9176356439   | manurag@gmail.com     |
+| mall      | anupama    | abcd     | bangalore | karnataka     | 50443438 | 9176366439   | manupama@gmail.com    |
++-----------+------------+----------+-----------+---------------+----------+-------------+------------------------+
