@@ -322,3 +322,169 @@ mysql> SELECT * FROM employee_payroll;
 |  3 | Charlie | M      | 3000000 | 2020-05-21 |  NULL | NULL       | NULL    |
 +----+---------+--------+---------+------------+-------+------------+---------+
 3 rows in set (0.01 sec)
+********************************************************************************
+UC 9 : Ability to extend employee_payroll table to have Basic Pay,Deductions,
+       Taxable Pay,Income Tax, Net Pay.
+********************************************************************************
+
+mysql> ALTER TABLE employee_payroll ADD basicPay Double;
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD Deductions Double;
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD TaxablePay Double;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD IncomeTax Double;
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ALTER TABLE employee_payroll ADD NetPay Double;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll;
++----+---------+--------+---------+------------+-------+------------+---------+----------+------------+------------+-----------+--------+
+| id | name    | gender | salary  | start      | Phone | Department | Address | basicPay | Deductions | TaxablePay | IncomeTax | NetPay |
++----+---------+--------+---------+------------+-------+------------+---------+----------+------------+------------+-----------+--------+
+|  1 | Bill    | M      | 1000000 | 2018-01-03 |  NULL | NULL       | NULL    |     NULL |       NULL |       NULL |      NULL |   NULL |
+|  2 | Terisa  | F      | 3000000 | 2019-11-13 |  NULL | NULL       | NULL    |     NULL |       NULL |       NULL |      NULL |   NULL |
+|  3 | Charlie | M      | 3000000 | 2020-05-21 |  NULL | NULL       | NULL    |     NULL |       NULL |       NULL |      NULL |   NULL |
++----+---------+--------+---------+------------+-------+------------+---------+----------+------------+------------+-----------+--------+
+3 rows in set (0.00 sec)
+
+
+mysql> INSERT INTO employee_payroll (name, gender, salary, start, Phone, Department, Address, basicPay, Deductions, TaxablePay, IncomeTax, NetPAy) 
+	VALUES ('Terisa', 'F', 3000000.00, '2018-01-03', 985628, 'Marketing', 'Mumbai', 3000000.00, 1000000.00, 2000000.00, 500000.00, 15000000.00);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM employee_payroll;
++----+---------+--------+---------+------------+--------+------------+---------+----------+------------+------------+-----------+----------+
+| id | name    | gender | salary  | start      | Phone  | Department | Address | basicPay | Deductions | TaxablePay | IncomeTax | NetPay   |
++----+---------+--------+---------+------------+--------+------------+---------+----------+------------+------------+-----------+----------+
+|  1 | Bill    | M      | 1000000 | 2018-01-03 |   NULL | NULL       | NULL    |     NULL |       NULL |       NULL |      NULL |     NULL |
+|  2 | Terisa  | F      | 3000000 | 2019-11-13 |   NULL | NULL       | NULL    |     NULL |       NULL |       NULL |      NULL |     NULL |
+|  3 | Charlie | M      | 3000000 | 2020-05-21 |   NULL | NULL       | NULL    |     NULL |       NULL |       NULL |      NULL |     NULL |
+|  4 | Terisa  | F      | 3000000 | 2018-01-03 | 985628 | Marketing  | Mumbai  |  3000000 |    1000000 |    2000000 |    500000 | 15000000 |
++----+---------+--------+---------+------------+--------+------------+---------+----------+------------+------------+-----------+----------+
+4 rows in set (0.01 sec)
+
+mysql> update employee_payroll set Department = 'Sales' WHERE id = '2';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll;
++----+---------+--------+---------+------------+--------+------------+---------+----------+------------+------------+-----------+----------+
+| id | name    | gender | salary  | start      | Phone  | Department | Address | basicPay | Deductions | TaxablePay | IncomeTax | NetPay   |
++----+---------+--------+---------+------------+--------+------------+---------+----------+------------+------------+-----------+----------+
+|  1 | Bill    | M      | 1000000 | 2018-01-03 |   NULL | NULL       | NULL    |     NULL |       NULL |       NULL |      NULL |     NULL |
+|  2 | Terisa  | F      | 3000000 | 2019-11-13 |   NULL | Sales      | NULL    |     NULL |       NULL |       NULL |      NULL |     NULL |
+|  3 | Charlie | M      | 3000000 | 2020-05-21 |   NULL | NULL       | NULL    |     NULL |       NULL |       NULL |      NULL |     NULL |
+|  4 | Terisa  | F      | 3000000 | 2018-01-03 | 985628 | Marketing  | Mumbai  |  3000000 |    1000000 |    2000000 |    500000 | 15000000 |
++----+---------+--------+---------+------------+--------+------------+---------+----------+------------+------------+-----------+----------+
+4 rows in set (0.00 sec)
+
+mysql> update employee_payroll set Department = 'Sales' WHERE id = '1';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set Department = 'Marketing' WHERE id = '3';
+Query OK, 1 row affected (0.04 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set Phone = '7775827779' WHERE id = '3';
+ERROR 1264 (22003): Out of range value for column 'Phone' at row 1
+mysql> update employee_payroll set Phone = '777582777' WHERE id = '3';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set Phone = '827582777' WHERE id = '1' or '2';
+Query OK, 4 rows affected (0.01 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> update employee_payroll set Address = 'Mumbai' WHERE id = '1' or '2' or '3' or '4';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 4  Changed: 3  Warnings: 0
+
+mysql> update employee_payroll set basicPay = 3000000.00 WHERE id = '1' or '2' or '3' or '4';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 4  Changed: 3  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll;
++----+---------+--------+---------+------------+-----------+------------+---------+----------+------------+------------+-----------+----------+
+| id | name    | gender | salary  | start      | Phone     | Department | Address | basicPay | Deductions | TaxablePay | IncomeTax | NetPay   |
++----+---------+--------+---------+------------+-----------+------------+---------+----------+------------+------------+-----------+----------+
+|  1 | Bill    | M      | 1000000 | 2018-01-03 | 827582777 | Sales      | Mumbai  |  3000000 |       NULL |       NULL |      NULL |     NULL |
+|  2 | Terisa  | F      | 3000000 | 2019-11-13 | 827582777 | Sales      | Mumbai  |  3000000 |       NULL |       NULL |      NULL |     NULL |
+|  3 | Charlie | M      | 3000000 | 2020-05-21 | 827582777 | Marketing  | Mumbai  |  3000000 |       NULL |       NULL |      NULL |     NULL |
+|  4 | Terisa  | F      | 3000000 | 2018-01-03 | 827582777 | Marketing  | Mumbai  |  3000000 |    1000000 |    2000000 |    500000 | 15000000 |
++----+---------+--------+---------+------------+-----------+------------+---------+----------+------------+------------+-----------+----------+
+4 rows in set (0.01 sec)
+
+
+mysql> update employee_payroll set Phone = '777582777' WHERE id = '3';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set Phone = '777582827' WHERE id = '1';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set Phone = '982582827' WHERE id = '4';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set Deductions = 9000000 WHERE id = '1';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set Deductions = 8000000 WHERE id = '2';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set Deductions = 7000000 WHERE id = '3';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set TaxablePay = 2100000 WHERE id = '1';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set TaxablePay = 2200000 WHERE id = '2';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set TaxablePay = 2300000 WHERE id = '3';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set IncomeTax = 500000.00 WHERE id = '1' or '2' or '3' or '4';
+Query OK, 3 rows affected (0.01 sec)
+Rows matched: 4  Changed: 3  Warnings: 0
+
+mysql> update employee_payroll set NetPay = 1600000 WHERE id = '1';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set NetPay = 1700000 WHERE id = '2';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update employee_payroll set NetPay = 1800000 WHERE id = '3';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM employee_payroll;
++----+---------+--------+---------+------------+-----------+------------+---------+----------+------------+------------+-----------+----------+
+| id | name    | gender | salary  | start      | Phone     | Department | Address | basicPay | Deductions | TaxablePay | IncomeTax | NetPay   |
++----+---------+--------+---------+------------+-----------+------------+---------+----------+------------+------------+-----------+----------+
+|  1 | Bill    | M      | 1000000 | 2018-01-03 | 777582827 | Sales      | Mumbai  |  3000000 |    9000000 |    2100000 |    500000 |  1600000 |
+|  2 | Terisa  | F      | 3000000 | 2019-11-13 | 827582777 | Sales      | Mumbai  |  3000000 |    8000000 |    2200000 |    500000 |  1700000 |
+|  3 | Charlie | M      | 3000000 | 2020-05-21 | 777582777 | Marketing  | Mumbai  |  3000000 |    7000000 |    2300000 |    500000 |  1800000 |
+|  4 | Terisa  | F      | 3000000 | 2018-01-03 | 982582827 | Marketing  | Mumbai  |  3000000 |    1000000 |    2000000 |    500000 | 15000000 |
++----+---------+--------+---------+------------+-----------+------------+---------+----------+------------+------------+-----------+----------+
+4 rows in set (0.00 sec)
