@@ -79,13 +79,13 @@ mysql> desc AddressBook;
 mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('shubham','pawar','abcd','solapur','maharashtra',413252,8530705596,'shubham.paw@gmail.com');
 Query OK, 1 row affected (0.10 sec)
 
-mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('reddy','aishwarya','bkguda','vizag','andhrapradesh',5073438,9176347439,'maishwarya@gmail.com');
+mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('aishwarya','reddy','bkguda','vizag','andhrapradesh',5073438,9176347439,'maishwarya@gmail.com');
 Query OK, 1 row affected (0.24 sec)
 
-mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('chow','anurag','lonavala','pune','maharashtra',5043438,91763456439,'manurag@gmail.com');
+mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('anurag','chow','lonavala','pune','maharashtra',5043438,91763456439,'manurag@gmail.com');
 Query OK, 1 row affected (0.19 sec)
 
-mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('mall','anupama','abcd','bangalore','karnataka',50443438,91763646439,'manupama@gmail.com');
+mysql> insert into AddressBook(firstname,lastname,address,city,state,zip,phonenumber,email) values('anupama','mall','abcd','bangalore','karnataka',50443438,91763646439,'manupama@gmail.com');
 Query OK, 1 row affected (0.19 sec)
 
 mysql> select * from Addressbook;
@@ -93,9 +93,9 @@ mysql> select * from Addressbook;
 | firstname | lastname   | address  | city      | state         | zip      | phonenumber  | email                 |
 +-----------+------------+----------+-----------+---------------+----------+--------------+-----------------------+
 | shubham   | pawar      | abcd     | solapur   | maharashtra   |   413252 | 8530705596   | shubham.paw@gmail.com |
-| reddy     | aishwarya  | bkguda   | vizag     | andhrapradesh |  5073438 | 9176347439   | maishwarya@gmail.com  |
-| chow      | anurag     | lonavala | pune      | maharashtra   |  5043438 | 9176356439   | manurag@gmail.com     |
-| mall      | anupama    | abcd     | bangalore | karnataka     | 50443438 | 9176366439   | manupama@gmail.com    |
+| aishwarya | reddy      | bkguda   | vizag     | andhrapradesh |  5073438 | 9176347439   | maishwarya@gmail.com  |
+| anurag    | chow       | lonavala | pune      | maharashtra   |  5043438 | 9176356439   | manurag@gmail.com     |
+| anupama   | mall       | abcd     | bangalore | karnataka     | 50443438 | 9176366439   | manupama@gmail.com    |
 +-----------+------------+----------+-----------+---------------+----------+-------------+------------------------+
 
 --------------------------------------------------------------------------------------------------------
@@ -109,8 +109,23 @@ mysql> select * from Addressbook;
 | firstname | lastname   | address  | city      | state         | zip      | phonenumber  | email                 |
 +-----------+------------+----------+-----------+---------------+----------+--------------+-----------------------+
 | shubham   | pawar      | abcd     | solapur   | maharashtra   |   413252 | 8530705596   | shubham.paw@gmail.com |
-| reddy     | aishwarya  | bkguda   | vizag     | andhrapradesh |  5073438 | 9176347439   | maishwarya@gmail.com  |
-| chow      | anurag     | lonavala | pune      | maharashtra   |  5043438 | 9176356439   | manurag@gmail.com     |
-| mall      | anupama    | abcd     | bangalore | karnataka     | 50443438 | 9176366439   | manupama@gmail.com    |
+| aishwarya | reddy      | bkguda   | vizag     | andhrapradesh |  5073438 | 9176347439   | maishwarya@gmail.com  |
+| anurag    | chow       | lonavala | pune      | maharashtra   |  5043438 | 9176356439   | manurag@gmail.com     |
+| anupama   | mall       | abcd     | bangalore | karnataka     | 50443438 | 9176366439   | manupama@gmail.com    |
 +-----------+------------+----------+-----------+---------------+----------+-------------+------------------------+
 4 rows in set (0.01 sec)
+--------------------------------------------------------------------------------------------------------
+UC5 -deleting the contact by their lastname
+
+mysql> delete from Addressbook where lastname='reddy';
+Query OK, 1 row affected (0.15 sec)
+
+mysql> select * from Addressbook;
++-----------+------------+----------+-----------+---------------+----------+--------------+-----------------------+
+| firstname | lastname   | address  | city      | state         | zip      | phonenumber  | email                 |
++-----------+------------+----------+-----------+---------------+----------+--------------+-----------------------+
+| shubham   | pawar      | abcd     | solapur   | maharashtra   |   413252 | 8530705596   | shubham.paw@gmail.com |
+| anurag    | chow       | lonavala | pune      | maharashtra   |  5043438 | 9176356439   | manurag@gmail.com     |
+| anupama   | mall       | abcd     | bangalore | karnataka     | 50443438 | 9176366439   | manupama@gmail.com    |
++-----------+------------+----------+-----------+---------------+----------+-------------+------------------------+
+3 rows in set (0.02 sec)
