@@ -129,3 +129,14 @@ mysql> select * from Addressbook;
 | anupama   | mall       | abcd     | bangalore | karnataka     | 50443438 | 9176366439   | manupama@gmail.com    |
 +-----------+------------+----------+-----------+---------------+----------+-------------+------------------------+
 3 rows in set (0.02 sec)
+-------------------------------------------------------------------------------------------------------
+// UC6 retrieving the contact by city or state
+
+mysql> select * from Addressbook where city='solapur' or state='maharashtra';
++-----------+------------+----------+-----------+---------------+----------+--------------+-----------------------+
+| firstname | lastname   | address  | city      | state         | zip      | phonenumber  | email                 |
++-----------+------------+----------+-----------+---------------+----------+--------------+-----------------------+
+| shubham   | pawar      | abcd     | solapur   | maharashtra   |   413252 | 8530705596   | shubham.paw@gmail.com |
+| anurag    | chow       | lonavala | pune      | maharashtra   |  5043438 | 9176356439   | manurag@gmail.com     |
++-----------+------------+----------+-----------+---------------+----------+-------------+------------------------+
+2 rows in set (0.00 sec)
