@@ -100,7 +100,7 @@ mysql> select * from Addressbook;
 
 --------------------------------------------------------------------------------------------------------
 //UC4 editing the existing contact by their firstname
-mysql> update Addressbook set lastname='pawar' where firstname='shubham';
+mysql> update Addressbook set lastname='paw' where firstname='shubham';
 Query OK, 1 row affected (0.06 sec)
 Rows matched: 1  Changed: 1  Warnings: 0
 
@@ -108,7 +108,7 @@ mysql> select * from Addressbook;
 +-----------+------------+----------+-----------+---------------+----------+--------------+-----------------------+
 | firstname | lastname   | address  | city      | state         | zip      | phonenumber  | email                 |
 +-----------+------------+----------+-----------+---------------+----------+--------------+-----------------------+
-| shubham   | pawar      | abcd     | solapur   | maharashtra   |   413252 | 8530705596   | shubham.paw@gmail.com |
+| shubham   | paw        | abcd     | solapur   | maharashtra   |   413252 | 8530705596   | shubham.paw@gmail.com |
 | aishwarya | reddy      | bkguda   | vizag     | andhrapradesh |  5073438 | 9176347439   | maishwarya@gmail.com  |
 | anurag    | chow       | lonavala | pune      | maharashtra   |  5043438 | 9176356439   | manurag@gmail.com     |
 | anupama   | mall       | abcd     | bangalore | karnataka     | 50443438 | 9176366439   | manupama@gmail.com    |
@@ -164,9 +164,9 @@ mysql> select firstname,city from Addressbook order by city;
 +-----------+-----------+
 | firstname | city      |
 +-----------+-----------+
-| shubham   | solapur   |
-| anurag    | pune      |
 | anupama   | bangalore |
+| anurag    | pune      |
+| shubham   | solapur   |
 +-----------+-----------+
 3 rows in set (0.00 sec)
 ------------------------------------------------------------------------------------------------------
