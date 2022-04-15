@@ -45,3 +45,31 @@ mysql> show databases;
 
 mysql> use addressbookservice;
 Database changed
+-------------------------------------------------------------------------------------------------------
+//UC2 Creating table as AddressBook with attributes
+
+mysql> create table AddressBook(
+    -> firstname varchar(50) not null,
+    -> lastname varchar(50) not null,
+    -> address varchar(100) not null,
+    -> city varchar(50) not null,
+    -> state varchar(50) not null,
+    -> zip int not null,
+    -> phonenumber double not null,
+    -> email varchar(100) not null);
+Query OK, 0 rows affected (2.29 sec)
+
+mysql> desc AddressBook;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| firstname   | varchar(50)  | NO   |     | NULL    |       |
+| lastname    | varchar(50)  | NO   |     | NULL    |       |
+| address     | varchar(100) | NO   |     | NULL    |       |
+| city        | varchar(50)  | NO   |     | NULL    |       |
+| state       | varchar(50)  | NO   |     | NULL    |       |
+| zip         | int          | NO   |     | NULL    |       |
+| phonenumber | double       | NO   |     | NULL    |       |
+| email       | varchar(100) | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+8 rows in set (0.13 sec)
