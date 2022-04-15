@@ -221,3 +221,31 @@ mysql> select count(firstname) from Addressbook where contacttype='friend';
 |                1 |
 +------------------+
 1 row in set (0.00 sec)
+--------------------------------------------------------------------------------------------------------
+//UC11 ability to add person to friend and family
+mysql> select * from Addressbook;
++-----------+----------+----------+-----------+------------+----------+-------------+-----------------------+------------+-------------+
+| firstname | lastname | address  | city      | state      | zip      | phonenumber | email                 | bookname   | contacttype |
++-----------+----------+----------+-----------+------------+----------+-------------+-----------------------+------------+-------------+
+| shubham   | pawar    | kurduvadi| solapur   | maharashtra|482001    |8530705596   | shubham.paw@gmail.com | helloworld | friend      |
+| anurag    | chow     | lonavala | pune      | maharashtra|482003    |9176356439   | manurag@gmail.com     |            |             |
+| anupama   | mall     | abcd     | raipur    | bangalore  |482004    |9176366439   | manurag@gmail.com     |            |             |
++-----------+----------+----------+-----------+------------+----------+-------------+-----------------------+------------+-------------+
+3 rows in set (0.00 sec)
+mysql> update Addressbook set bookname ='helloworld',contacttype='family' where lastname='chow';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update Addressbook set bookname ='helloworld',contacttype='family' where lastname='mali';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Addressbook;
++-----------+----------+----------+-----------+------------+----------+-------------+-----------------------+------------+-------------+
+| firstname | lastname | address  | city      | state      | zip      | phonenumber | email                 | bookname   | contacttype |
++-----------+----------+----------+-----------+------------+----------+-------------+-----------------------+------------+-------------+
+| shubham   | pawar    | kurduvadi| solapur   | maharashtra|482001    |8530705596   | shubham.paw@gmail.com | helloworld | friend      |
+| anurag    | chow     | lonavala | pune      | maharashtra|482003    |9176356439   | manurag@gmail.com     | helloworld | friend      |
+| anupama   | mall     | abcd     | raipur    | bangalore  |482004    |9176366439   | manurag@gmail.com     | helloworld | friend      |
++-----------+----------+----------+-----------+------------+----------+-------------+-----------------------+------------+-------------+
+3 rows in set (0.00 sec)
