@@ -169,3 +169,46 @@ mysql> select firstname,city from Addressbook order by city;
 | anupama   | bangalore |
 +-----------+-----------+
 3 rows in set (0.00 sec)
+------------------------------------------------------------------------------------------------------
+// UC9- altering the table with addressbook name and contact type
+
+mysql> alter table Addressbook add bookname varchar(50) not null,add contacttype varchar(50) not null;
+Query OK, 0 rows affected (2.62 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Addressbook;
++-------------+--------------+------+-----+---------+-------+
+| Field       | Type         | Null | Key | Default | Extra |
++-------------+--------------+------+-----+---------+-------+
+| firstname   | varchar(50)  | NO   |     | NULL    |       |
+| lastname    | varchar(50)  | NO   |     | NULL    |       |
+| address     | varchar(100) | NO   |     | NULL    |       |
+| city        | varchar(50)  | NO   |     | NULL    |       |
+| state       | varchar(50)  | NO   |     | NULL    |       |
+| zip         | int          | NO   |     | NULL    |       |
+| phonenumber | double       | NO   |     | NULL    |       |
+| email       | varchar(100) | NO   |     | NULL    |       |
+| bookname    | varchar(50)  | NO   |     | NULL    |       |
+| contacttype | varchar(50)  | NO   |     | NULL    |       |
++-------------+--------------+------+-----+---------+-------+
+10 rows in set (0.04 sec)
+mysql> update Addressbook set bookname ='helloworld',contacttype='friend' where lastname='pawar';
+Query OK, 1 row affected (0.06 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from Addressbook;
++-----------+----------+----------+-----------+------------+----------+-------------+-----------------------+------------+-------------+
+| firstname | lastname | address  | city      | state      | zip      | phonenumber | email                 | bookname   | contacttype |
++-----------+----------+----------+-----------+------------+----------+-------------+-----------------------+------------+-------------+
+| shubham   | pawar    | kurduvadi| solapur   | maharashtra|482001    |8530705596   | shubham.paw@gmail.com | helloworld | friend      |
+| anurag    | chow     | lonavala | pune      | maharashtra|482003    |9176356439   | manurag@gmail.com     |            |             |
+| anupama   | mall     | abcd     | raipur    | bangalore  |482004    |9176366439   | manurag@gmail.com     |            |             |
++-----------+----------+----------+-----------+------------+----------+-------------+-----------------------+------------+-------------+
+3 rows in set (0.02 sec)
+mysql> select * from Addressbook where contacttype='friend';
++-----------+----------+---------+-----------+-----------+--------+-------------+-----------------------+------------+-------------+
+| firstname | lastname | address | city      | state     | zip    | phonenumber | email                 | bookname   | contacttype |
++-----------+----------+---------+-----------+-----------+--------+-------------+-----------------------+------------+-------------+
+| shubham   | pawar    |kurduvadi| solapur   |maharashtra|482001  |8530705596   | shubham.paw@gmail.com | helloworld | friend      |
++-----------+----------+---------+-----------+-----------+--------+-------------+-----------------------+------------+-------------+
+1 row in set (0.00 sec)
